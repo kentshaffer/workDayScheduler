@@ -25,21 +25,38 @@ $( ".btn-primary" ).on( "click", function() {
     localStorage.setItem(timeSlot, inputValue);
 
 });
+console.log($('textarea'))
+$('textarea').each( function (element) {
 
-[...$('textarea')].forEach( function (element) {
-
-    var timeSlot = $(element).siblings("span").text();
+    var timeSlot = $(this).siblings("span").text();
     var existingValue = localStorage.getItem(timeSlot);
-    element.value = existingValue;
+    console.log($(this))
+    $(this).text(existingValue);
 });
 
 // do this for all elements - 9AM - 5PM
 // grab value from localstorage
 // save it to input elements
 
-// function changeHourColor() {
-//   let hour = now.getHours();
-//   if (hour <= 9) {
-//       document.write(hourTimeSlot: background: green)
-//   }
-// }
+$('textarea').each( function () {
+
+    let scheduleTime = $(this).parent().attr('id')
+    let currentHour = moment().format('h');
+    console.log(currentHour)
+
+    if ($(scheduleTime).val > (currentHour).val) {
+        hourTimeSlot.attr('background-color', 'green');
+
+    } 
+    else if  ((scheduleTime).val = (currentHour).val)
+        hourTimeSlot.attr('background-color', 'gray');
+
+     else { ((scheduleTime).val < (currentHour).val)
+    hourTimeSlot.attr('background-color', 'red')
+    };
+
+});
+
+    // var timeSlot = $(this).parent("span").text();
+    // var existingValue = localStorage.getItem(timeSlot);
+    // $(this).text(existingValue);
